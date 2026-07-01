@@ -11,6 +11,8 @@ function App() {
   const [titleText, setTitleText] = useState<string>('Escaneie para resgatar');
   const [useIncrementalCode, setUseIncrementalCode] = useState<boolean>(false);
   const [incrementalPrefix, setIncrementalPrefix] = useState<string>('CARD-');
+  const [useInstagram, setUseInstagram] = useState<boolean>(false);
+  const [instagramHandle, setInstagramHandle] = useState<string>('@meuinstagram');
 
   const handlePrint = () => {
     window.print();
@@ -104,6 +106,30 @@ function App() {
             </div>
           )}
 
+          <div className="input-group" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginTop: '1rem', marginBottom: '0.5rem' }}>
+            <input 
+              type="checkbox" 
+              id="useInstagram"
+              checked={useInstagram}
+              onChange={(e) => setUseInstagram(e.target.checked)}
+              style={{ width: '18px', height: '18px', cursor: 'pointer' }}
+            />
+            <label htmlFor="useInstagram" style={{ margin: 0, cursor: 'pointer' }}>Exibir @ do Instagram no cartão</label>
+          </div>
+
+          {useInstagram && (
+            <div className="input-group">
+              <label>Seu @ no Instagram</label>
+              <input 
+                type="text" 
+                className="input-field" 
+                value={instagramHandle} 
+                onChange={(e) => setInstagramHandle(e.target.value)}
+                placeholder="Ex: @meuinstagram"
+              />
+            </div>
+          )}
+
           <div style={{ marginTop: '2rem' }}>
             <button 
               className="btn" 
@@ -138,6 +164,26 @@ function App() {
                 />
               </div>
               <p>{customText}</p>
+              {useInstagram && (
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.3rem', marginTop: '0.5rem', color: '#db2777', fontWeight: 600, fontSize: '0.85rem' }}>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="14"
+                    height="14"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect>
+                    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                    <line x1="17.5" x2="17.51" y1="6.5" y2="6.5"></line>
+                  </svg>
+                  <span>{instagramHandle}</span>
+                </div>
+              )}
               {/* Opção para mostrar o código de resgate embaixo em texto bem pequeno */}
               <p style={{ fontSize: '0.7rem', color: '#94a3b8', marginTop: '0.5rem' }}>{item.code}</p>
             </div>
