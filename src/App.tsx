@@ -212,7 +212,7 @@ function App() {
 
       {/* Footer - Hidden when printing */}
       <footer className="no-print" style={{ marginTop: '3rem', borderTop: '1px solid var(--border-color)', paddingTop: '1.5rem', paddingBottom: '1.5rem', textAlign: 'center', color: 'var(--text-muted)', fontSize: '0.9rem', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.5rem' }}>
-        <p style={{ margin: 0 }}>Desenvolvido para facilitar a criação de cartões de resgate.</p>
+        <p style={{ margin: 0 }}>Desenvolvido pela comunidade para a comunidade.</p>
         <a href="https://github.com/igorlopes/qr-cards-generator" target="_blank" rel="noopener noreferrer" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', color: 'var(--primary)', textDecoration: 'none', fontWeight: 500 }}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
