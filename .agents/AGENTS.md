@@ -17,9 +17,5 @@
 - `chore:` [atualizações estruturais/build] (ex: *chore: atualiza dependências do vite*)
 - `docs:` [documentação] (ex: *docs: atualiza readme com instruções de deploy*)
 
-## 3. Fluxo de Trabalho (Branching e Pull Requests)
-Ao executar comandos git, criar branches ou orquestrar repositórios, obedeça estritamente ao seguinte fluxo:
-- **Nomenclatura de Branches:** Para novas funcionalidades, utilize sempre a convenção `feature/` como prefixo (nunca utilize o nome `item/`).
-- **Bugfixes no Desenvolvimento:** Durante a fase de desenvolvimento, as correções de bugs devem ser realizadas diretamente nas próprias branches de `feature`. Não há necessidade de criar branches apartadas de bugfix a partir delas.
-- **Bugfixes em Produção:** A criação de branches de bugfix apartadas é necessária e permitida apenas quando partem de branches de `release`.
-- **Pull Requests (PRs):** Na fase de verificação e abertura de Pull Requests, é obrigatório garantir que os analistas sejam incluídos como responsáveis (assignees) na plataforma de repositório.
+## 3. Fluxo de Trabalho (Commits Diretos)
+Ao executar comandos git ou realizar commits de novas funcionalidades, refatorações ou correções de bugs, faça os commits **diretamente na branch `main`**. Para este projeto atual, não é necessário adotar o fluxo de criação de branches de feature apartadas, nem abrir Pull Requests.
