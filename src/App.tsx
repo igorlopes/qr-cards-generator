@@ -21,28 +21,28 @@ function App() {
   return (
     <div className="app-container">
       <header className="header no-print">
-        <h1>Gerador de Cartões QR</h1>
+        <h1>CampoFogo Codes</h1>
         <p>Crie cartões de resgate a partir de uma planilha e imprima em PDF.</p>
       </header>
 
       {/* Control Panel - Hidden when printing */}
       <div className="no-print" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '2rem' }}>
-        
+
         {/* Upload Section */}
         <div className="card-panel">
           <div className="input-group" style={{ marginBottom: '1.5rem' }}>
             <h2 style={{ fontSize: '1.2rem', display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '1rem' }}>
-              <UploadCloud size={20} className="upload-icon" style={{ width: 24, height: 24 }} /> 
+              <UploadCloud size={20} className="upload-icon" style={{ width: 24, height: 24 }} />
               Importar Planilha
             </h2>
             <label className="upload-zone">
               <UploadCloud className="upload-icon" />
               <span>Clique ou arraste sua planilha (.xlsx, .csv)</span>
-              <input 
-                type="file" 
-                accept=".xlsx, .xls, .csv" 
-                onChange={handleFileUpload} 
-                style={{ display: 'none' }} 
+              <input
+                type="file"
+                accept=".xlsx, .xls, .csv"
+                onChange={handleFileUpload}
+                style={{ display: 'none' }}
               />
             </label>
             {error && <p style={{ color: 'var(--danger)', marginTop: '1rem', fontSize: '0.9rem' }}>{error}</p>}
@@ -59,13 +59,13 @@ function App() {
           <h2 style={{ fontSize: '1.2rem', display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '1rem' }}>
             <Settings size={20} /> Configuração do Cartão
           </h2>
-          
+
           <div className="input-group">
             <label>Título do Cartão</label>
-            <input 
-              type="text" 
-              className="input-field" 
-              value={titleText} 
+            <input
+              type="text"
+              className="input-field"
+              value={titleText}
               onChange={(e) => setTitleText(e.target.value)}
               placeholder="Ex: Escaneie para resgatar"
             />
@@ -73,18 +73,18 @@ function App() {
 
           <div className="input-group">
             <label>Subtítulo / Descrição</label>
-            <input 
-              type="text" 
-              className="input-field" 
-              value={customText} 
+            <input
+              type="text"
+              className="input-field"
+              value={customText}
               onChange={(e) => setCustomText(e.target.value)}
               placeholder="Ex: Prêmio de Resgate!"
             />
           </div>
 
           <div className="input-group" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginTop: '1rem', marginBottom: '0.5rem' }}>
-            <input 
-              type="checkbox" 
+            <input
+              type="checkbox"
               id="useIncremental"
               checked={useIncrementalCode}
               onChange={(e) => setUseIncrementalCode(e.target.checked)}
@@ -96,10 +96,10 @@ function App() {
           {useIncrementalCode && (
             <div className="input-group">
               <label>Prefixo Numeração</label>
-              <input 
-                type="text" 
-                className="input-field" 
-                value={incrementalPrefix} 
+              <input
+                type="text"
+                className="input-field"
+                value={incrementalPrefix}
                 onChange={(e) => setIncrementalPrefix(e.target.value)}
                 placeholder="Ex: CARD-"
               />
@@ -107,8 +107,8 @@ function App() {
           )}
 
           <div className="input-group" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginTop: '1rem', marginBottom: '0.5rem' }}>
-            <input 
-              type="checkbox" 
+            <input
+              type="checkbox"
               id="useInstagram"
               checked={useInstagram}
               onChange={(e) => setUseInstagram(e.target.checked)}
@@ -120,10 +120,10 @@ function App() {
           {useInstagram && (
             <div className="input-group">
               <label>Seu @ no Instagram</label>
-              <input 
-                type="text" 
-                className="input-field" 
-                value={instagramHandle} 
+              <input
+                type="text"
+                className="input-field"
+                value={instagramHandle}
                 onChange={(e) => setInstagramHandle(e.target.value)}
                 placeholder="Ex: @meuinstagram"
               />
@@ -131,9 +131,9 @@ function App() {
           )}
 
           <div style={{ marginTop: '2rem' }}>
-            <button 
-              className="btn" 
-              onClick={handlePrint} 
+            <button
+              className="btn"
+              onClick={handlePrint}
               disabled={data.length === 0}
               style={{ width: '100%', opacity: data.length === 0 ? 0.5 : 1, cursor: data.length === 0 ? 'not-allowed' : 'pointer' }}
             >
@@ -148,8 +148,8 @@ function App() {
       {data.length > 0 && (
         <div className="cards-grid">
           {data.map((item, index) => {
-            const formattedIncremental = useIncrementalCode 
-              ? `${incrementalPrefix}${String(index + 1).padStart(3, '0')} - ` 
+            const formattedIncremental = useIncrementalCode
+              ? `${incrementalPrefix}${String(index + 1).padStart(3, '0')} - `
               : '';
             const bottomText = `${formattedIncremental}${item.code}`;
 
@@ -158,7 +158,7 @@ function App() {
                 <div className="qr-card-top">
                   <div className="qr-card-info">
                     <h3 style={{ fontSize: '1rem', fontWeight: 700, margin: 0, color: 'var(--text-main)' }}>{titleText}</h3>
-                    
+
                     {useInstagram && (
                       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-start', gap: '0.3rem', marginTop: '0.2rem', color: '#db2777', fontWeight: 600, fontSize: '0.75rem' }}>
                         <svg
@@ -184,8 +184,8 @@ function App() {
                   </div>
 
                   <div className="qr-wrapper">
-                    <QRCodeSVG 
-                      value={`https://store.pokemongo.com/pt-BR/offer-redemption?passcode=${item.code}`} 
+                    <QRCodeSVG
+                      value={`https://store.pokemongo.com/pt-BR/offer-redemption?passcode=${item.code}`}
                       size={80}
                       level="M"
                       includeMargin={false}
