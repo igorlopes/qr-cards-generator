@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { QRCodeSVG } from 'qrcode.react';
-import { UploadCloud, Printer, Settings, ShieldCheck } from 'lucide-react';
+import { UploadCloud, Printer, Settings, ShieldCheck, Github } from 'lucide-react';
 import { useSpreadsheetReader } from './hooks/useSpreadsheetReader';
 import './App.css'; // Emptied out
 import './index.css';
@@ -209,6 +209,15 @@ function App() {
           })}
         </div>
       )}
+
+      {/* Footer - Hidden when printing */}
+      <footer className="no-print" style={{ marginTop: '3rem', borderTop: '1px solid var(--border-color)', paddingTop: '1.5rem', paddingBottom: '1.5rem', textAlign: 'center', color: 'var(--text-muted)', fontSize: '0.9rem', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.5rem' }}>
+        <p style={{ margin: 0 }}>Desenvolvido para facilitar a criação de cartões de resgate.</p>
+        <a href="https://github.com/igorlopes/qr-cards-generator" target="_blank" rel="noopener noreferrer" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', color: 'var(--primary)', textDecoration: 'none', fontWeight: 500 }}>
+          <Github size={18} />
+          <span>Código fonte no GitHub</span>
+        </a>
+      </footer>
     </div>
   );
 }
