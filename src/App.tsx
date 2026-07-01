@@ -147,47 +147,60 @@ function App() {
       {/* Cards Grid - Visible when printing */}
       {data.length > 0 && (
         <div className="cards-grid">
-          {data.map((item, index) => (
-            <div key={index} className="qr-card">
-              <h3>{titleText}</h3>
-              {useIncrementalCode && (
-                <p style={{ fontSize: '0.85rem', fontWeight: 600, color: 'var(--primary)', marginBottom: '0.5rem' }}>
-                  {incrementalPrefix}{String(index + 1).padStart(3, '0')}
-                </p>
-              )}
-              <div className="qr-wrapper">
-                <QRCodeSVG 
-                  value={`https://store.pokemongo.com/pt-BR/offer-redemption?passcode=${item.code}`} 
-                  size={120}
-                  level="M"
-                  includeMargin={false}
-                />
-              </div>
-              <p>{customText}</p>
-              {useInstagram && (
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.3rem', marginTop: '0.5rem', color: '#db2777', fontWeight: 600, fontSize: '0.85rem' }}>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="14"
-                    height="14"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  >
-                    <rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect>
-                    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
-                    <line x1="17.5" x2="17.51" y1="6.5" y2="6.5"></line>
-                  </svg>
-                  <span>{instagramHandle}</span>
+          {data.map((item, index) => {
+            const formattedIncremental = useIncrementalCode 
+              ? `${incrementalPrefix}${String(index + 1).padStart(3, '0')} - ` 
+              : '';
+            const bottomText = `${formattedIncremental}${item.code}`;
+
+            return (
+              <div key={index} className="qr-card">
+                <div className="qr-card-top">
+                  <div className="qr-card-info">
+                    <h3 style={{ fontSize: '1rem', fontWeight: 700, margin: 0, color: 'var(--text-main)' }}>{titleText}</h3>
+                    
+                    {useInstagram && (
+                      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-start', gap: '0.3rem', marginTop: '0.2rem', color: '#db2777', fontWeight: 600, fontSize: '0.75rem' }}>
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="12"
+                          height="12"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        >
+                          <rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect>
+                          <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                          <line x1="17.5" x2="17.51" y1="6.5" y2="6.5"></line>
+                        </svg>
+                        <span>{instagramHandle}</span>
+                      </div>
+                    )}
+
+                    <p style={{ fontSize: '0.8rem', color: 'var(--text-muted)', margin: 0, marginTop: '0.2rem' }}>{customText}</p>
+                  </div>
+
+                  <div className="qr-wrapper">
+                    <QRCodeSVG 
+                      value={`https://store.pokemongo.com/pt-BR/offer-redemption?passcode=${item.code}`} 
+                      size={80}
+                      level="M"
+                      includeMargin={false}
+                    />
+                  </div>
                 </div>
-              )}
-              {/* Opção para mostrar o código de resgate embaixo em texto bem pequeno */}
-              <p style={{ fontSize: '0.7rem', color: '#94a3b8', marginTop: '0.5rem' }}>{item.code}</p>
-            </div>
-          ))}
+
+                <div style={{ textAlign: 'center', marginTop: '0.3rem', borderTop: '1px dashed #e2e8f0', paddingTop: '0.5rem' }}>
+                  <p style={{ fontSize: '0.65rem', color: '#64748b', margin: 0, fontWeight: 600 }}>
+                    {bottomText}
+                  </p>
+                </div>
+              </div>
+            );
+          })}
         </div>
       )}
     </div>

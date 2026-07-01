@@ -174,14 +174,29 @@ body {
   background: var(--surface);
   border: 1px dashed #94a3b8;
   border-radius: 0;
-  padding: 1.5rem;
+  padding: 0.75rem;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  text-align: center;
-  gap: 0.8rem;
+  justify-content: flex-start;
+  align-items: stretch;
+  gap: 0.5rem;
   transition: var(--transition);
   page-break-inside: avoid;
+}
+
+.qr-card-top {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.qr-card-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  max-width: calc(100% - 90px);
 }
 
 .qr-card:hover {
@@ -238,7 +253,7 @@ body {
     margin-bottom: 0;
     margin-top: -1px;
     margin-left: -1px;
-    padding: 2.5rem 1.5rem;
+    padding: 0.75rem;
     background-color: white;
   }
 
